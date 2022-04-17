@@ -47,5 +47,15 @@ function updateInsurance($insurance_plan)
 	$statement->closeCursor();
 }
 
+function updateSpecialty($specialty)
+{
+	global $db;
+	$query = "update data2 set specialty=:specialty";
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':specialty', $specialty);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
 
 ?>
