@@ -78,9 +78,9 @@
   </div> <!-- .page-banner -->
 
   <?php
-    include('updateMed.php')
-    include('updateMedInsur.php')
-    include('updateMedCond.php')
+    require('updateMed.php')
+    require('updateMedInsur.php')
+    require('updateMedCond.php')
 
     if(is_array($fetchData)){
       foreach($fetchData as $data){}}
@@ -88,6 +88,17 @@
       foreach)$fetchData2 as $data2){}}
     elseif(is_array($fetchData3)){
       foreach)$fetchData3 as $data3){}}
+    else if (!empty($_POST['btnAction']) && $_POST['btnAction'] == "Edit"){
+      if ($_POST['insurance_plan']){
+        updateInsurance($_POST['insurance_plan'])
+      }
+      elseif ($_POST['phone_number']){
+        updatePhone($_POST['phone_number'])
+      }
+      elseif ($_POST['address']) {
+        updateAddress($_POST['address'])
+      }
+    }
     ?>
 
   <div class="page-section">
@@ -95,7 +106,7 @@
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Patient ID: <?php echo $data['user_ID'] ?> </p> <!-- # get from database  -->
+            <p> Patient ID: <?php echo $data['user_ID'] ?></p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
             <p> Name: </p> <!-- # get from database  -->
@@ -108,21 +119,21 @@
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <form action="medPass.php" method="post">
             <p> Phone Number: 
-              <input type="submit" value="Edit" class="btn btn-primary" />
+              <input type="submit" name ='btnAction' value="Edit" class="btn btn-primary" />
               <input type="hidden" value=<?php echo $data['phone_number'] ??''; ?> />
             </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
           <form action="medPass.php" method="post">
             <p> Address:
-            <input type="submit" value="Edit" class="btn btn-primary" />
+            <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
             <input type="hidden" value=<?php echo $data['address'] ??''; ?> />
             </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <form action="medPass.php" method="post">
             <p> Insurance Plan: 
-              <input type="submit" value="Edit" class="btn btn-primary" />
+              <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
               <input type="hidden" value=<?php echo $data['insurance_plan'] ??''; ?> />
             </p>
           </div>
