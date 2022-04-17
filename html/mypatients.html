@@ -60,8 +60,22 @@
 
   <div class="page-section pt-5">
     <div class="container">
-
+          <h3 class="sidebar-title">Search</h3>
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search your appointments by date">
+                  <button type="submit" class="btn"><span class="icon mai-search"></span></button>
+                  <!-- make it display the appointments of that physician on that date, otherwise no appointments-->
+                </div>
+              </form>
+              
+            <select name="feelings" id="feelings" class="custom-select">
+              <!-- for loop of patients that have the same physician -->
+              <option value="general">Search your appointments by patient</option> <!-- change the values if needed-->
+            </select>
+            <div> <p> </p></div>
       <div class="sidebar-block">
+             
               <h3 class="sidebar-title">My Patients</h3>
               <div class="blog-item">  
                <!-- for loop here to display the patients assigned to each doctor -->
@@ -73,7 +87,7 @@
                     <a href="#"><span class="mai-calendar"></span> Age</a>
                   </div>
                 </div>
-                
+
               </div>
 
               <div class="blog-item">  
