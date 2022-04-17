@@ -39,5 +39,3 @@ function fetch_data($db, $table, $column){
 	}
 }
 
-
-?>
