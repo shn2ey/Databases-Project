@@ -30,6 +30,9 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="#"><span class="text-primary">Med</span>-Port</a>
+
+      
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,14 +45,14 @@
             <li class="nav-item active">
               <a class="nav-link" href="MedicalPassport.html">Medical Passport</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Daily Check In</a>
+            <li class="nav-item ">
+              <a class="nav-link" href="checkin.html">Daily Check In</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Insurance</a>
+            <li class="nav-item ">
+              <a class="nav-link" href="insurance.html">Insurance</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Appointments</a>
+            <li class="nav-item ">
+              <a class="nav-link" href="appointments.html">Appointments</a>
             </li>
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="#">Logout</a>
@@ -59,6 +62,7 @@
       </div> <!-- .container -->
     </nav>
   </header>
+
   <div class="page-banner overlay-dark bg-image" style="background-image: url(../assets/img/bg_image_1.jpg);">
     <div class="banner-section">
       <div class="container text-center wow fadeInUp">
@@ -72,6 +76,7 @@
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
   </div> <!-- .page-banner -->
+
   <?php
     include('updateMed.php')
     include('updateMedInsur.php')
@@ -90,11 +95,10 @@
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Patient ID: </p> <!-- # get from database  -->
-            <td> <?php echo $data['user_ID']??''; ?></td> 
+            <p> Patient ID: <?php echo $data['user_ID'] ?> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <p> Name </p> <!-- # get from database  -->
+            <p> Name: </p> <!-- # get from database  -->
             <td> <?php echo $data['first_name'] && $data['last_name']??''; ?></td> 
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
@@ -102,16 +106,25 @@
             <td><?php echo $data['birthdate']??''; ?></td>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Phone Number: </p> <!-- # get from database  -->
-            <td><?php echo $data['phone_number'] ?>??''; ?></td>
+            <form action="medPass.php" method="post">
+            <p> Phone Number: 
+              <input type="submit" value="Edit" class="btn btn-primary" />
+              <input type="hidden" value=<?php echo $data['phone_number'] ??''; ?> />
+            </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Address: </p> <!-- # get from database  -->
-            <td><?php echo $data['address'] ?>??''; ?></td>
+          <form action="medPass.php" method="post">
+            <p> Address:
+            <input type="submit" value="Edit" class="btn btn-primary" />
+            <input type="hidden" value=<?php echo $data['address'] ??''; ?> />
+            </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Insurance Plan: </p> <!-- # get from database  -->
-            <td><?php echo $data2['insurance_plan'] ?> ??''; ?></td>
+            <form action="medPass.php" method="post">
+            <p> Insurance Plan: 
+              <input type="submit" value="Edit" class="btn btn-primary" />
+              <input type="hidden" value=<?php echo $data['insurance_plan'] ??''; ?> />
+            </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <p> Medical Conditions: </p> <!-- # get from database  -->
@@ -120,7 +133,6 @@
           <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
             <p> Allergies: </p> <!-- # get from database  -->
             <p> None listed. </p>
-
           </div>
           
         </div>
