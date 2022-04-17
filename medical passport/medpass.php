@@ -123,8 +123,9 @@
             </p> 
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <p> Name: </p> <!-- # get from database  -->
+            <p> Name:  <!-- # get from database  -->
             <td> <?php echo $data['first_name'] && $data['last_name']??''; ?></td> 
+            </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
             <p> Age: </p> <!-- # get from database  -->
@@ -136,6 +137,7 @@
               <input type="submit" name ='btnAction' value="Edit" class="btn btn-primary" />
               <input type="hidden" value=<?php echo $data['phone_number'] ??''; ?> />
             </p>
+          </form>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
           <form action="medPass.php" method="post">
@@ -143,21 +145,35 @@
             <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
             <input type="hidden" value=<?php echo $data['address'] ??''; ?> />
             </p>
+          </form>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <form action="medPass.php" method="post">
             <p> Insurance Plan: 
               <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
               <input type="hidden" value=<?php echo $data['insurance_plan'] ??''; ?> />
+            </form>
             </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Medical Conditions: </p> <!-- # get from database  -->
-            <td><?php echo $data3['medical_condition'] ?> ??''; ?></td>
+            <p> Medical Conditions: 
+            <?php
+            //echo $data3['medical_condition']  ??''
+            $result = mysql_query("SELECT medical_conditions FROM patient_medical_condition");
+            while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+              printf("%s", $row["medical_condition"]);
+            }
+            mysql_free_result($result);
+            ?>
+            </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <p> Allergies: </p> <!-- # get from database  -->
-            <p> None listed. </p>
+            <p> Allergies: 
+            
+
+
+            </p> <!-- # get from database  -->
+            
           </div>
           
         </div>
