@@ -40,10 +40,10 @@ if (isset($_POST['user_ID']) && isset($_POST['password'])) {
         exit();
 
     }else{
-    	## HASH PASSWORD HERE 
-    	
+    	# Hash input password in the same way as stored password hash
+    	$pass = hash("sha512", $pass);
     	##check ALSO if session role is physician or patient and display home page accordingly
-		$stmt = $conn->prepare("SELECT * FROM users WHERE user_ID=? AND pass=? LIMIT 1");
+	$stmt = $conn->prepare("SELECT * FROM users WHERE user_ID=? AND pass=? LIMIT 1");
     	$stmt->bind_param('is', $user_ID, $pass);
     	$stmt->execute();
     	$stmt->bind_result($user_ID, $first_name, $last_name, $address, $email, $birth_date, $pass);
