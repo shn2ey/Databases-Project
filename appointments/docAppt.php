@@ -28,7 +28,7 @@
   <header>
    <?php
    require('appUpdate.php')
-   require('')
+   require('updateMed.php')
     if(is_array($fetchData)){
       foreach($fetchData as $data){}}
     else if (!empty($_POST['btnAction']) && $_POST['btnAction'] == "Cancel"){
@@ -80,8 +80,12 @@
                    /** <!-- get dates from the database,
                     if the date of the appintment is after today, display it here 
                     **/
+                    $result = mysql_query("SELECT patient_id FROM appointment WHERE DATE(appt_date_time) >= CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
                     ?>
-                    
                     <a href="#"><span class="mai-calendar"></span> Date of Appointment</a>
                     <a href="#"><span class="mai-chatbubbles"></span> General Check Up</a>
 
@@ -99,13 +103,23 @@
                   <div class="meta">
                     <!-- get dates from the database,
                     if the date of the appintment is after today, display it here -->
+                    <?php 
+                    $result = mysql_query("SELECT appt_date_time FROM appointment WHERE DATE(appt_date_time) >= CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["appt_date_time"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
                     <a href="#"><span class="mai-calendar"></span> Date of Appointment</a>
                     <a href="#"><span class="mai-chatbubbles"></span> General Check Up</a>
 
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary wow zoomIn">Cancel Appointment</button>
 
+                <form action="docAppt.php" method="post">
+                <button type="submit" name = 'btnAction' class="btn btn-primary wow zoomIn">Cancel Appointment</button>
+                <input type = 'hidden' name = 'Cancel' value="<?php echo $data['appt_date_time'] ?>" />
+              </form>
               </div>
               <div class="blog-item">
                
@@ -114,13 +128,22 @@
                   <div class="meta">
                     <!-- get dates from the database,
                     if the date of the appintment is after today, display it here -->
+                    <?php 
+                    $result = mysql_query("SELECT patient_id FROM appointment WHERE DATE(appt_date_time) >= CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
+
                     <a href="#"><span class="mai-calendar"></span> Date of Appointment</a>
                     <a href="#"><span class="mai-chatbubbles"></span> General Check Up</a>
-
                   </div>
                 </div>
+                <form action="docAppt.php" method="post">
                 <button type="submit" name = 'btnAction' class="btn btn-primary wow zoomIn">Cancel Appointment</button>
-                <input type = 'hidden' name = 'delete' value="<?php echo $data['appt_date_time'] ?>" />
+                <input type = 'hidden' name = 'Cancel' value="<?php echo $data['appt_date_time'] ?>" />
+              </form>
               </div>
             </div>
 
