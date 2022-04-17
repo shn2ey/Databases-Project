@@ -168,6 +168,8 @@
             </p> <!-- # get from database  -->
           </div>
         </div>
+        <button type="submit" class="btn btn-primary wow zoomIn">Export to PDF</button>
+      </div>
 
     </div> <!-- .container -->
   </div> <!-- .page-section -->
