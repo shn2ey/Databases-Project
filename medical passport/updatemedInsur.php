@@ -1,8 +1,6 @@
 <?php
 include ("db_conn.php");
 
-
-
 $db = $conn;
 $table="patient_medical_condition";
 $column=['patient_id', 'medical_condition']
@@ -37,6 +35,16 @@ function fetch_data($db, $table, $column){
 	}
 	return $msg;
 	}
+}
+
+function updateInsurance($insurance_plan)
+{
+	global $db;
+	$query = "update data2 set insurance_plan=:insurance_plan";
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':insurance_plan', $insurance_plan);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 
