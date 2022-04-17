@@ -128,8 +128,9 @@
             </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Age: </p> <!-- # get from database  -->
+            <p> Age:  <!-- # get from database  -->
             <td><?php echo $data['birthdate']??''; ?></td>
+            </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <form action="medPass.php" method="post">
