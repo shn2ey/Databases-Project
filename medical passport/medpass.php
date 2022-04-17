@@ -106,7 +106,21 @@
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Patient ID: <?php echo $data['user_ID'] ?></p> <!-- # get from database  -->
+            <p> Patient ID: 
+            <?php 
+              //echo $data['user_ID']
+             if (isset($_POST['id'])){
+                 $mysqli = new mysqli("localhost", "test", "test", "test");
+                if ($mysqli->connect_errno) {
+                  print "Failed to connect to MySQL: " . $mysqli->connect_error;
+                 }
+                $id = $mysqli->real_escape_string($_POST['id']);
+                $res = $mysqli->query("SELECT patient_id FROM users WHERE id = $id");
+                $row = $res->fetch_assoc();
+                print '<p>' . html_entities($row['username']) .'</p>';
+              }
+            ?>
+            </p> 
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
             <p> Name: </p> <!-- # get from database  -->
