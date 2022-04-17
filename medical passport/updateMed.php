@@ -1,8 +1,6 @@
 <?php
 include ("db_conn.php");
 
-
-
 $db = $conn;
 $table="users";
 $column=['user_ID',  'first_name', 'last_name', 'address', 'email','birth_date', 'pass']
@@ -39,5 +37,24 @@ function fetch_data($db, $table, $column){
 	}
 }
 
+function updateAddress($address)
+{
+	global $db;
+	$query = "update data set address=:address";
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':address', $address);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
+function updatePhone($phone_number)
+{
+	global $db;
+	$query = "update data set phone_numer=:phone_number";
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':phone_number', $phone_number);
+	$statement->execute();
+	$statement->closeCursor();
+}
 
 ?>
