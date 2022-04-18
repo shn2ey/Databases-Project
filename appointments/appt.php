@@ -103,21 +103,14 @@
             </div>
             <h2 class="post-title h1">My Complete History</h2>
             <div class="post-content">
-              <p>IDK how we want to gather these things from the database
-
-              <p> </p>
-              <p> </p>     
-              <p> </p>     
-              <p> </p>
-
-              let me know if you want a search bar here
-
-
-              </p>
-
               <p>
-              good luck
-              </p>
+              <?php
+            $result = mysql_query("SELECT medical_conditions FROM patient_medical_condition");
+            while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+              printf("%s", $row["medical_condition"]);
+            }
+            mysql_free_result($result);
+            ?>
             </div>
            
           </article> <!-- .blog-details -->
@@ -138,12 +131,14 @@
             <div class="sidebar-block">
               <h3 class="sidebar-title">Your Medical Conditions</h3>
               <ul class="categories">
-                <!-- for loop
-                  if person has medical conditions, put them here 
-                    otherwise, say no medical conditions -->
-                <li><a href="#">You </a></li>
-                <li><a href="#">Are </a></li>
-                <li><a href="#">Busted </a></li>
+                <?php
+                $result = mysql_query("SELECT medical_conditions FROM patient_medical_condition");
+                while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                  printf("%s", $row["medical_condition"]);
+                }
+                ?>
+                <li><a href="#"><?php mysql_free_result($result) ?>;</a></li>
+                
 
               </ul>
             </div>
@@ -202,7 +197,7 @@
             <div class="sidebar-block">
               <h3 class="sidebar-title">Latest Feedback</h3>
               <p>
-                if doctor gave feedback (it is a variable in teh database) display the message here, othereise say there are no messages 
+                There are no new messages.
               </p>
             </div>
           </div>
