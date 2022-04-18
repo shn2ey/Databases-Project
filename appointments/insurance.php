@@ -91,6 +91,13 @@
               <!-- make for loop that goes through the insurances in the database -->
               <!-- for-loop -->
                   <!-- have this inside the loop <option value="general">opt1</option> -->
+            <?php
+            $result = mysql_query("SELECT insurance_plan FROM patient_insurance_plan");
+            while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+              printf("%s", $row["insurance_plan"]);
+            }
+            mysql_free_result($result);
+            ?>
               <option value="general">opt1</option> <!-- change the values if needed-->
             </select>
           </div>
