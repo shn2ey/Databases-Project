@@ -82,27 +82,65 @@
               <!-- example 1 -->
               <div class="sidebar-block">
                 <div class="content">
-                    <h5 class="post-title"><a> Input name of physician </a></h5>
+                    <h5 class="post-title"><a> Input name of physician </a> <span class="mai-calendar" class="justify-right"><a>      </a></span> July 12, 2018</a> </h5>
                     <div class="meta">
+                      <div class="container">
+
+                        
                       <!-- get dates from the database -->
-                      <a> Your satisfaction rating: </a>
+                      
                       <p> You completed a daily check in.</p>
                       <p> the doctor's notes</p>
-                      <span class="mai-calendar"></span> July 12, 2018</a>
+                   
+                      <!-- satisfaction rating -->
+                      <!-- if has not already posted their satisfaction rating, display this -->
+                      <!-- if they already did their satisfaction rating, display that -->
+                          
+                            <label for="subject">I feel that my doctor listened to me and addressed my needs.</label>
+                            <select name="feelings" id="feelings" class="custom-select" >
+                              <option value="5">I strongly agree</option> 
+                              <option value="4">I slightly agree</option>
+                              <option value="3">I feel neutral</option>
+                              <option value="2">I slightly disagree</option>
+                              <option value="1">I strongly disagree</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit</button> 
+                              <!-- followiing line only display if satisfaction rating already exists -->
+                          <a> Your satisfaction rating: </a>
+                    
+                    </div>
                     </div>
                   </div>
               </div>
               <!-- example 2 -->
               <div class="sidebar-block">
                 <div class="content">
-                    <h5 class="post-title"><a> Input name of physician </a></h5>
+                    <h5 class="post-title"><a> Input name of physician </a> <span class="mai-calendar" class="justify-right"><a>      </a></span> July 12, 2018</a> </h5>
                     <div class="meta">
+                      <div class="container">
+
+                        
                       <!-- get dates from the database -->
-                      <a> Your satisfaction rating: </a>
-                      <!-- <a> have this be the satisfaction rating</a> -->
                       <p> You completed a daily check in.</p>
                       <p> the doctor's notes</p>
-                      <span class="mai-calendar"></span> July 12, 2018</a>
+                   
+                      <!-- satisfaction rating -->
+                      <!-- if has not already posted their satisfaction rating, display this -->
+                      <!-- if they already did their satisfaction rating, display that -->
+                          
+                            <label for="subject">I feel that my doctor listened to me and addressed my needs.</label>
+                            <select name="feelings" id="feelings" class="custom-select" >
+                              <option value="5">I strongly agree</option> 
+                              <option value="4">I slightly agree</option>
+                              <option value="3">I feel neutral</option>
+                              <option value="2">I slightly disagree</option>
+                              <option value="1">I strongly disagree</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit</button> 
+                            <!-- followiing line only display if satisfaction rating already exists -->
+                          <a> Your satisfaction rating: </a>
+                    
+                    </div>
                     </div>
                   </div>
               </div>
