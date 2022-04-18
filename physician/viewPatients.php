@@ -68,6 +68,13 @@
                   <div class="meta">
                     <!-- get dates from the database,
                     if the date of the appintment is after today, display it here -->
+                    <?php 
+                    $result = mysql_query("SELECT physician_id,patient_id FROM appointment");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
                     <a href="#"><span class="mai-calendar"></span> Age</a>
                   </div>
                 </div>
@@ -84,6 +91,13 @@
                   <div class="meta">
                     <!-- get dates from the database,
                     if the date of the appintment is after today, display it here -->
+                    <?php
+                    $result = mysql_query("SELECT patient_id FROM appointment WHERE DATE(appt_date_time) >= CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
                     <a href="#"><span class="mai-calendar"></span> Age</a>
                   </div>
                 </div>
@@ -94,8 +108,13 @@
                 <div class="content">
                   <h5 class="post-title"><a href="DocViewMedicalPassport.html">Place holder for patient (will get from the database)</a></h5>
                   <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
+                   <?php
+                   $result = mysql_query("SELECT patient_id FROM appointment WHERE DATE(appt_date_time) >= CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
                     <a href="#"><span class="mai-calendar"></span> Age</a>
                   </div>
                 </div>
