@@ -91,7 +91,9 @@
     <div class="container">
 
         <!-- button for assigning patient check in -->
-        <button type="submit" class="btn btn-primary wow zoomIn">Assign Check In</button>
+        <input type="submit" value ='Assign Check In' name = 'btnAction'class="btn btn-primary wow zoomIn" />
+
+        idk how to do this truthfully.
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
