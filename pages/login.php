@@ -58,6 +58,10 @@ if (isset($_POST['user_ID']) && isset($_POST['password'])) {
             	$_SESSION['user_ID'] = $user_ID;
             	$_SESSION['first_name'] = $first_name;
             	$_SESSION['last_name'] = $last_name;
+                $_SESSION['address'] = $address;
+                $_SESSION['email'] = $email;
+                $_SESSION['birth_date'] = $birth_date;
+
 				$stmt->close();
             	
             	#check if the user is phycisican on patient and then redirect them to respective pages

@@ -94,10 +94,10 @@ if (isset($_SESSION['user_ID'])) {
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Patient ID: </p> <!-- # get from database  -->
+            <p> Patient ID: <?php echo $_SESSION['user_ID']; ?></p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <p> Name: </p> <!-- # get from database  -->
+            <p> Name: <?php echo $_SESSION['first_name']; ?> <?php echo $_SESSION['last_name']; ?></p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
             <p> Age: </p> <!-- # get from database  -->
@@ -106,7 +106,7 @@ if (isset($_SESSION['user_ID'])) {
             <p> Phone Number: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Address: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Address: <?php echo $_SESSION['address']; ?><button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <p> Insurance Plan: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
