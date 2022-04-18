@@ -66,58 +66,47 @@
 
   <div class="page-section pt-5">
     <div class="container">
-      <!-- <div class="row">
-        <div class="col-lg-8">
-          <nav aria-label="Breadcrumb">
-            <ol class="breadcrumb bg-transparent py-0 mb-5">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
-              <li class="breadcrumb-item active" aria-current="page">List of Countries without Coronavirus case</li>
-            </ol>
-          </nav>
-        </div>
-      </div> <!-- .row --> 
 
       <div class="row">
         <div class="col-lg-8">
           <article class="blog-details">
             <div class="post-thumb">
-              <img src="../assets/img/blog/blog_1.jpg" alt="">
+              <img src="physical-360w.webp" alt="">
             </div>
             <div class="post-meta">
-              <div class="post-author">
-                <span class="text-grey">By</span> <a href="#">Admin</a>  
-              </div>
-              <span class="divider">|</span>
-              <div class="post-date">
-                <a href="#">22 Jan, 2018</a>
-              </div>
-              <span class="divider">|</span>
-              <div>
-                <a href="#">StreetStyle</a>, <a href="#">Fashion</a>, <a href="#">Couple</a>  
-              </div>
-              <span class="divider">|</span>
-              <div class="post-comment-count">
-                <a href="#">8 Comments</a>
-              </div>
             </div>
             <h2 class="post-title h1">My Complete History</h2>
             <div class="post-content">
-              <p>IDK how we want to gather these things from the database
 
-              <p> </p>
-              <p> </p>     
-              <p> </p>     
-              <p> </p>
-
-              let me know if you want a search bar here
-
-
-              </p>
-
-              <p>
-              good luck
-              </p>
+              <!-- input from the database the previous appointments -->
+              <!-- example 1 -->
+              <div class="sidebar-block">
+                <div class="content">
+                    <h5 class="post-title"><a> Input name of physician </a></h5>
+                    <div class="meta">
+                      <!-- get dates from the database -->
+                      <a> Your satisfaction rating: </a>
+                      <p> You completed a daily check in.</p>
+                      <p> the doctor's notes</p>
+                      <span class="mai-calendar"></span> July 12, 2018</a>
+                    </div>
+                  </div>
+              </div>
+              <!-- example 2 -->
+              <div class="sidebar-block">
+                <div class="content">
+                    <h5 class="post-title"><a> Input name of physician </a></h5>
+                    <div class="meta">
+                      <!-- get dates from the database -->
+                      <a> Your satisfaction rating: </a>
+                      <!-- <a> have this be the satisfaction rating</a> -->
+                      <p> You completed a daily check in.</p>
+                      <p> the doctor's notes</p>
+                      <span class="mai-calendar"></span> July 12, 2018</a>
+                    </div>
+                  </div>
+              </div>
+          
             </div>
            
           </article> <!-- .blog-details -->
@@ -126,15 +115,7 @@
         </div>
         <div class="col-lg-4">
           <div class="sidebar">
-            <!-- <div class="sidebar-block">
-              <h3 class="sidebar-title">Search</h3>
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
-                  <button type="submit" class="btn"><span class="icon mai-search"></span></button>
-                </div>
-              </form>
-            </div> -->
+            
             <div class="sidebar-block">
               <h3 class="sidebar-title">Your Medical Conditions</h3>
               <ul class="categories">
@@ -157,8 +138,8 @@
                   <div class="meta">
                     <!-- get dates from the database,
                     if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> 19</a>
+                    <span class="mai-calendar"></span> July 12, 2018</a>
+                    <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
 
                   </div>
                 </div>
@@ -168,8 +149,8 @@
                 <div class="content">
                   <h5 class="post-title"><a href="#">Medical Appointment</a></h5>
                   <div class="meta">
-                    <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> 19</a>
+                    <span class="mai-calendar"></span> July 12, 2018</a>
+                    <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
                   </div>
                 </div>
               </div>
@@ -178,32 +159,18 @@
                 <div class="content">
                   <h5 class="post-title"><a href="#">Medical Appointment</a></h5>
                   <div class="meta">
-                    <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> 19</a>
+                    <span class="mai-calendar"></span> July 12, 2018</a>
+                    <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- <div class="sidebar-block">
-              <h3 class="sidebar-title">Tag Cloud</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">dish</a>
-                <a href="#" class="tag-cloud-link">menu</a>
-                <a href="#" class="tag-cloud-link">food</a>
-                <a href="#" class="tag-cloud-link">sweet</a>
-                <a href="#" class="tag-cloud-link">tasty</a>
-                <a href="#" class="tag-cloud-link">delicious</a>
-                <a href="#" class="tag-cloud-link">desserts</a>
-                <a href="#" class="tag-cloud-link">drinks</a>
-              </div>
-            </div> -->
 
+            <!-- if the patient has a check in assigned, display this block, otherwise do not display -->
             <div class="sidebar-block">
-              <h3 class="sidebar-title">Latest Feedback</h3>
-              <p>
-                if doctor gave feedback (it is a variable in teh database) display the message here, othereise say there are no messages 
-              </p>
+              <h3 class="sidebar-title">Your doctor assigned you a daily check in.</h3>
+              <h5 class="post-title"><a href="checkin.html">Complete Daily Check In</a></h5>
             </div>
           </div>
         </div> 
