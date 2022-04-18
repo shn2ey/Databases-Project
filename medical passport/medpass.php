@@ -124,7 +124,7 @@
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
             <p> Name:  <!-- # get from database  -->
-            <td> <?php echo $data['first_name'] && $data['last_name']??''; ?></td> 
+            <td> <?php echo $data['first_name'] && $data['last_name']??''; ?> </td> 
             </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
@@ -135,24 +135,24 @@
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <form action="medPass.php" method="post">
             <p> Phone Number: 
-              <input type="submit" name ='btnAction' value="Edit" class="btn btn-primary" />
-              <input type="hidden" value=<?php echo $data['phone_number'] ??''; ?> />
+              <input type="submit" name ='btnAction' value="Edit" class="btn btn-primary" >
+              <input type="hidden" value=<?php echo $data['phone_number'] ??''; ?> >
             </p>
           </form>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
           <form action="medPass.php" method="post">
             <p> Address:
-            <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
-            <input type="hidden" value=<?php echo $data['address'] ??''; ?> />
+            <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" >
+            <input type="hidden" value=<?php echo $data['address'] ??''; ?>>
             </p>
           </form>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <form action="medPass.php" method="post">
             <p> Insurance Plan: 
-              <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
-              <input type="hidden" value=<?php echo $data['insurance_plan'] ??''; ?> />
+              <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" >
+              <input type="hidden" value=<?php echo $data['insurance_plan'] ??''; ?> >
             </form>
             </p>
           </div>
