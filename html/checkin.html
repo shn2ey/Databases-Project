@@ -80,43 +80,57 @@
 
   <div class="page-section">
     <div class="container">
-      <h5> Please submit once daily. </h5>
+      
 
       <form class="contact-form mt-5">
+        <h5> Please submit once daily. </h5>
         <div class="row mb-3">
           <label> </label>
           <div class="col-sm-6 py-2 wow fadeInLeft">
-            <label for="feeling good">Today I am feeling good</label>
+            <!-- physical wellness rating -->
+            <label for="feeling good">Today, I feel good physically.</label>
             <select name="feelings" id="feelings" class="custom-select">
-              <option value="general">I strongly agree</option> <!-- change the values if needed-->
-              <option value="cardiology">I slightly agree</option>
-              <option value="dental">I feel neutral</option>
-              <option value="neurology">I slightly disagree</option>
-              <option value="orthopaedics">I strongly disagree</option>
+              <option value="5">I strongly agree</option> 
+              <option value="4">I slightly agree</option>
+              <option value="3">I feel neutral</option>
+              <option value="2">I slightly disagree</option>
+              <option value="1">I strongly disagree</option>
             </select>
           </div>
+          <!-- mental wellness rating -->
           <div class="col-sm-6 py-2 wow fadeInRight">
-            <label for="emailAddress">I have more severe symptoms</label>
+            <label for="emailAddress">Today, I feel good mentally.</label>
             <select name="feelings" id="feelings" class="custom-select">
-              <option value="general">I strongly agree</option> <!-- change the values if needed-->
-              <option value="cardiology">I slightly agree</option>
-              <option value="dental">I feel neutral</option>
-              <option value="neurology">I slightly disagree</option>
-              <option value="orthopaedics">I strongly disagree</option>
+              <option value="5">I strongly agree</option> 
+              <option value="4">I slightly agree</option>
+              <option value="3">I feel neutral</option>
+              <option value="2">I slightly disagree</option>
+              <option value="1">I strongly disagree</option>
             </select>
           </div>
+          <!-- satisfaction rating -->
           <div class="col-12 py-2 wow fadeInUp">
-            <label for="subject">Generally, I think I will be okay.</label>
+            <label for="subject">I feel that my doctor listened to me and addressed my needs.</label>
             <select name="feelings" id="feelings" class="custom-select">
-              <option value="general">I strongly agree</option> <!-- change the values if needed-->
-              <option value="cardiology">I slightly agree</option>
-              <option value="dental">I feel neutral</option>
-              <option value="neurology">I slightly disagree</option>
-              <option value="orthopaedics">I strongly disagree</option>
+              <option value="5">I strongly agree</option> 
+              <option value="4">I slightly agree</option>
+              <option value="3">I feel neutral</option>
+              <option value="2">I slightly disagree</option>
+              <option value="1">I strongly disagree</option>
             </select>
           </div>
         </div>
         <button type="submit" class="btn btn-primary wow zoomIn">Submit</button>
+        <!-- add a message here:
+        if clicked on submit button, send back to database
+        set the ratings to the appointment table
+        take the satisfaction rating of the doctor
+             
+              if the doctor has no average rating AKA average rating is 0 or null: 
+                set this rating to be their average rating,
+              else: 
+                the doctor has an average satisfication rating already, take this rating, add to the average, divide by 2, and make it the average 
+              -->
       </form>
     </div>
   </div>
