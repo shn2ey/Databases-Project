@@ -40,13 +40,13 @@
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="mypatients.html">View My Patients</a>
+              <a class="nav-link" href="viewPatients.php">View My Patients</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="docappointments.html">Manage Appointments</a>
+              <a class="nav-link" href="docAppt.php">Manage Appointments</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="docbio.html">Edit Personal Information</a>
+              <a class="nav-link" href="docbio.php">Edit Personal Information</a>
             </li>
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="#">Logout</a>
@@ -66,6 +66,13 @@
                   <input type="text" class="form-control" placeholder="Search your appointments by date">
                   <button type="submit" class="btn"><span class="icon mai-search"></span></button>
                   <!-- make it display the appointments of that physician on that date, otherwise no appointments-->
+                   <?php 
+                    $result = mysql_query("SELECT physician_id,patient_id FROM appointment WHERE DATE(appt_date_time) == CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
                 </div>
               </form>
               
@@ -82,8 +89,16 @@
                 <div class="content">
                   <h5 class="post-title"><a href="docViewPass.php">Place holder for patient (will get from the database)</a></h5>
                   <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
+                     <?php 
+                   /** <!-- get dates from the database,
+                    if the date of the appintment is after today, display it here 
+                    **/
+                    $result = mysql_query("SELECT patient_id FROM appointment WHERE DATE(appt_date_time) >= CURRENT_TIMESTAMP");
+                    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                    printf("%s", $row["patient_id"]);
+                     }
+                    mysql_free_result($result);
+                    ?>
                     <a href="#"><span class="mai-calendar"></span> Age</a>
                   </div>
                 </div>
