@@ -8,7 +8,7 @@
 
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-  <title>MedPort My Patients</title>
+  <title>MedPort - Doc View Medical Passport</title>
 
   <link rel="stylesheet" href="../assets/css/maicons.css">
 
@@ -21,11 +21,27 @@
   <link rel="stylesheet" href="../assets/css/theme.css">
 </head>
 <body>
+  <?php
+  require('updateMed.php')
+  require('updatemedInsur.php')
+  if(is_array($fetchData)){
+    foreach($fetchData as $data){}}
 
+  else if (!empty($_POST['btnAction']) && $_POST['btnAction'] == "Edit"){
+      if ($_POST['insurance_plan']){
+        updateInsurance($_POST['insurance_plan'])
+      }
+      elseif($_POST['medical_condition']){
+        updateCondition($_POST['medical_condition'])
+      }
+    }
+  ?>
   <!-- Back to top button -->
   <div class="back-to-top"></div>
 
   <header>
+    
+
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="#"><span class="text-primary">Med</span>-Port</a>
@@ -56,65 +72,100 @@
     </nav>
   </header>
 
-  <div class="page-section pt-5">
+  <div class="page-banner overlay-dark bg-image" style="background-image: url(../assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Medical Passport</li>
+          </ol>
+        </nav>
+        <h1 class="font-weight-normal"> Insert Name of Patient's Medical Passport</h1>
+      </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+  </div> <!-- .page-banner -->
+
+
+  <div class="page-section">
     <div class="container">
 
-      <div class="sidebar-block">
-              <h3 class="sidebar-title">My Patients</h3>
-              <div class="blog-item">  
-               <!-- for loop here to display the patients assigned to each doctor -->
-                <div class="content">
-                  <h5 class="post-title"><a href="DocViewMedicalPassport.html">Place holder for patient (will get from the database)</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Age</a>
-                  </div>
-                </div>
-                
-              </div>
+        <!-- button for assigning patient check in -->
+        <button type="submit" class="btn btn-primary wow zoomIn">Assign Check In</button>
 
-              <div class="blog-item">  
-               <!-- for loop here to display the patients assigned to each doctor -->
-               <?php foreach ($patient_list as $data): ?>
-                <tr>
-                  <td><?php echo $data['first_name'] && $data['last_name']?></td>
-                <div class="content">
-                  <h5 class="post-title"><a href="DocViewMedicalPassport.html">Place holder for patient (will get from the database)</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Age</a>
-                  </div>
-                </div>
-              </div>
-               
-                <div class="blog-item">  
-               <!-- for loop here to display the patients assigned to each doctor -->
-                <div class="content">
-                  <h5 class="post-title"><a href="DocViewMedicalPassport.html">Place holder for patient (will get from the database)</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Age</a>
-                  </div>
-                </div>
-              </div>
-
-              </div>
-            </div>
-
-      <div class="row">
-        
-        
-              
-            </div>
+        <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+            <p> Patient ID: 
+              <?php 
+              //echo $data['user_ID']
+             if (isset($_POST['id'])){
+                 $mysqli = new mysqli("localhost", "test", "test", "test");
+                if ($mysqli->connect_errno) {
+                  print "Failed to connect to MySQL: " . $mysqli->connect_error;
+                 }
+                $id = $mysqli->real_escape_string($_POST['id']);
+                $res = $mysqli->query("SELECT patient_id FROM users WHERE id = $id");
+                $row = $res->fetch_assoc();
+                print '<p>' . html_entities($row['first_name']) .'</p>';
+              }
+            ?>
+            </p> <!-- # get from database  -->
           </div>
-        </div> 
-      </div> <!-- .row -->
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <p> Name: 
+              <td> <?php echo $data['first_name'] && $data['last_name']??''; ?></td> 
+            </p> <!-- # get from database  -->
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+            <p> Age: 
+              <td><?php echo $data['birthdate']??''; ?></td>
+            </p> <!-- # get from database  -->
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+            <p> Phone Number:
+              <td><?php echo $data['phone_number'] ??''; ?> /></td>
+            </p> <!-- # get from database  -->
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+            <p> Address: 
+              <td><?php echo $data['address'] ??''; ?> /></td>
+            </p> <!-- # get from database  -->
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+            <form action="docViewPass.php" method="post">
+            <p> Insurance Plan: 
+              <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
+              <input type="hidden" value=<?php echo $data['insurance_plan'] ??''; ?> />
+            </form>
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+            <form action="docViewPass.php" method="post">
+            <p> Medical Conditions: 
+              <?php
+            //echo $data3['medical_condition']  ??''
+            $result = mysql_query("SELECT medical_conditions FROM patient_medical_condition");
+            while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+              printf("%s", $row["medical_condition"]);
+            }
+            mysql_free_result($result);
+            ?>
+            <input type="submit" name = 'btnAction' value="Edit" class="btn btn-primary" />
+            <input type="hidden" value=<?php mysql_free_result($result); ?> />
+            </p>
+          </form>
+          </div>
+          
+
+        </div>
+       
+       <!-- button for exporting to pdf -->
+        <button type="submit" class="btn btn-primary wow zoomIn">Export to PDF</button>
+
     </div> <!-- .container -->
   </div> <!-- .page-section -->
-<div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
+  
+
+  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
     <div class="container py-5 py-lg-0">
       <div class="row align-items-center">
         <div class="col-lg-4 wow zoomIn">
