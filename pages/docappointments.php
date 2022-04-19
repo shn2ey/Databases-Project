@@ -48,7 +48,7 @@ if (isset($_SESSION['user_ID'])) {
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="mypatients.php">View My Patients</a>
+              <a class="nav-link" href="mypatient.php">View My Patients</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="checkin.php">Manage Appointments</a>

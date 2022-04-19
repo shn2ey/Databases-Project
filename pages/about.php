@@ -75,6 +75,11 @@ if (isset($_SESSION['user_ID'])) {
         </div> <!-- .navbar-collapse -->
 
           <!-- else:  -->
+
+            <li class="nav-item">
+              <a class="btn btn-primary ml-lg-3" href="#">Login</a>
+
+            </li>
           </ul>
         </div> <!-- .navbar-collapse -->
       </div> <!-- .container -->

@@ -73,34 +73,37 @@ if (isset($_SESSION['user_ID'])) {
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Physician ID: <?php echo $_SESSION['user_ID']; ?> </p> <!-- # get from database  -->
+            <p> Physician ID: </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <p> Name: <?php echo $_SESSION['first_name']; ?> <?php echo $_SESSION['last_name']; ?> </p> <!-- # get from database  -->
+            <p> Name: </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
             <p> Age: </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Email: <?php echo $_SESSION['email']; ?> <button type="submit" class="btn btn-primary">Edit</button></p> <!-- # get from database  -->
+            <p> Phone Number: <button type="submit" class="btn btn-primary">Edit</button></p> <!-- # get from database  -->
 
 
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Address: <?php echo $_SESSION['address']; ?> <button type="submit" class="btn btn-primary" text="align-right" float="align-right" margin-left="-50%">Edit</button> </p> <!-- # get from database  -->
+            <p> Address: <button type="submit" class="btn btn-primary" text="align-right" float="align-right" margin-left="-50%">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <p> Insurance Plan: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Average Rating: <?php echo $_SESSION['avg_rating']; ?><button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Medical Conditions: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
-          
-          
           <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <p> Speciality: <?php echo $_SESSION['speciality']; ?><button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Allergies: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
-
+          <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <p> Degree: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <p> Qualifications: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+          </div>
           
         </div>
 

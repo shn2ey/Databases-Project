@@ -58,48 +58,19 @@ if (isset($_POST['user_ID']) && isset($_POST['password'])) {
             	$_SESSION['user_ID'] = $user_ID;
             	$_SESSION['first_name'] = $first_name;
             	$_SESSION['last_name'] = $last_name;
-                $_SESSION['address'] = $address;
-                $_SESSION['email'] = $email;
-                $_SESSION['birth_date'] = $birth_date;
-                // header("Location: about.php"); 
-
-
-			     $stmt->close();
+				$stmt->close();
             	
             	#check if the user is phycisican on patient and then redirect them to respective pages
-            	$stmt2 = $conn->prepare("SELECT physician_ID FROM physician WHERE physician_ID=?");
-    			$stmt2->bind_param('i', $user_ID);
-    			$stmt2->execute();
-    			$stmt2->store_result();
-
-
-                
-
-
+            	$stmt = $conn->prepare("SELECT patient_ID FROM patient WHERE patient_ID=?");
+    			$stmt->bind_param('i', $user_ID);
+    			$stmt->execute();
+    			$stmt->bind_result($user_ID, $first_name, $last_name, $address, $email, $birth_date, $pass);
+    			$stmt->store_result();
             	
-
-		   		if($stmt2->num_rows == 1) { //To check if the row exists --> then it is a patient
-                    // if($stmt->fetch()) //fetching the contents of the row
-                    // {
-                    //     $_SESSION['avg_rating'] = $avg_rating;
-                    //     $_SESSION['speciality'] = $speciality;
-                    // }
-		   			header("Location: mypatients.php");
-                    exit();
+		   		if($stmt->num_rows == 1) { //To check if the row exists --> then it is a patient
+		   			header("Location: about.php"); 
 				} else {   //they are a physician
-					header("Location: about.php");
-                        // $stmt3 = $conn->prepare("SELECT physician_notes FROM appointment WHERE patient_ID =?");
-                        // $stmt3->bind_param('i', $user_ID);
-                        // $stmt2->execute();
-                        // $stmt2->store_result();
-
-                        // if($stmt3->fetch()) //fetching the contents of the row
-                        // {
-                            
-                        //     $_SESSION['date'] = $appt_date_time;
-                        //     $_SESSION['satisfaction'] = $satisfaction_rating;
-                        //     $_SESSION['notes'] = $physician_notes;
-                        //     $_SESSION['practice'] = $location;
+					header("Location: mypatients.php");
 					exit();
 				}
 
