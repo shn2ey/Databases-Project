@@ -72,13 +72,34 @@ if (isset($_POST['user_ID']) && isset($_POST['password'])) {
     			$stmt2->execute();
     			$stmt2->store_result();
 
-            	header("Location: mypatients.php");
+
+                
+
+
+            	
 
 		   		if($stmt2->num_rows == 1) { //To check if the row exists --> then it is a patient
-		   			 
+                    // if($stmt->fetch()) //fetching the contents of the row
+                    // {
+                    //     $_SESSION['avg_rating'] = $avg_rating;
+                    //     $_SESSION['speciality'] = $speciality;
+                    // }
+		   			header("Location: mypatients.php");
                     exit();
 				} else {   //they are a physician
 					header("Location: about.php");
+                        // $stmt3 = $conn->prepare("SELECT physician_notes FROM appointment WHERE patient_ID =?");
+                        // $stmt3->bind_param('i', $user_ID);
+                        // $stmt2->execute();
+                        // $stmt2->store_result();
+
+                        // if($stmt3->fetch()) //fetching the contents of the row
+                        // {
+                            
+                        //     $_SESSION['date'] = $appt_date_time;
+                        //     $_SESSION['satisfaction'] = $satisfaction_rating;
+                        //     $_SESSION['notes'] = $physician_notes;
+                        //     $_SESSION['practice'] = $location;
 					exit();
 				}
 

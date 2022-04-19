@@ -103,10 +103,10 @@ if (isset($_SESSION['user_ID'])) {
             <p> Age: </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Phone Number: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Email: <?php echo $_SESSION['email']; ?> <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Address: <?php echo $_SESSION['address']; ?><button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Address: <?php echo $_SESSION['address']; ?>   <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <p> Insurance Plan: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
@@ -114,9 +114,7 @@ if (isset($_SESSION['user_ID'])) {
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <p> Medical Conditions: </p> <!-- # get from database  -->
           </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <p> Allergies: </p> <!-- # get from database  -->
-          </div>
+          
           <form action="exportToCSV.php">
           <input type="button" value="Download CSV File For My Appointments">
           </form>
