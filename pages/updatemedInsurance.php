@@ -2,9 +2,9 @@
 include ("db_conn.php");
 
 $db = $conn;
-$table="users";
-$column=['user_ID',  'first_name', 'last_name', 'address', 'email','birth_date', 'pass']
-$fetchData = fetch_data($db, $table, $column);
+$table="patient_medical_condition";
+$column=['patient_id', 'medical_condition']
+$fetchData2 = fetch_data($db, $table, $column);
 
 function fetch_data($db, $table, $column){
 	if(empty($db)){
@@ -37,24 +37,25 @@ function fetch_data($db, $table, $column){
 	}
 }
 
-function updateAddress($address)
+function updateInsurance($insurance_plan)
 {
 	global $db;
-	$query = "update data set address=:address";
+	$query = "update data2 set insurance_plan=:insurance_plan";
 	$statement = $db->prepare($query); 
-	$statement->bindValue(':address', $address);
+	$statement->bindValue(':insurance_plan', $insurance_plan);
 	$statement->execute();
 	$statement->closeCursor();
 }
 
-function updatePhone($phone_number)
+function updateSpecialty($specialty)
 {
 	global $db;
-	$query = "update data set phone_numer=:phone_number";
+	$query = "update data2 set specialty=:specialty";
 	$statement = $db->prepare($query); 
-	$statement->bindValue(':phone_number', $phone_number);
+	$statement->bindValue(':specialty', $specialty);
 	$statement->execute();
 	$statement->closeCursor();
 }
+
 
 ?>

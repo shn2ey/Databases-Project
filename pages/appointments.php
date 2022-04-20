@@ -1,8 +1,13 @@
 <?php 
 
 session_start();
+require('db_conn.php');
+
 
 if (isset($_SESSION['user_ID'])) {
+
+                  
+                    
 
  ?>
 
@@ -56,9 +61,6 @@ if (isset($_SESSION['user_ID'])) {
             <li class="nav-item ">
               <a class="nav-link" href="checkin.php">Daily Check In</a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="insurance.php">Insurance</a>
-            </li>
             <li class="nav-item active">
               <a class="nav-link" href="appointments.php">Appointments</a>
             </li>
@@ -88,70 +90,84 @@ if (isset($_SESSION['user_ID'])) {
 
               <!-- input from the database the previous appointments -->
               <!-- example 1 -->
-              <div class="sidebar-block">
-                <div class="content">
-                    <h5 class="post-title"><a> Input name of physician </a> <span class="mai-calendar" class="justify-right"><a>      </a></span> July 12, 2018</a> </h5>
-                    <div class="meta">
-                      <div class="container">
+              <!-- <div class="sidebar-block"> -->
+                <!-- <div class="content"> -->
 
-                        
-                      <!-- get dates from the database -->
+                    
                       
-                      <p> You completed a daily check in.</p>
-                      <p> the doctor's notes</p>
-                   
-                      <!-- satisfaction rating -->
-                      <!-- if has not already posted their satisfaction rating, display this -->
-                      <!-- if they already did their satisfaction rating, display that -->
-                          
-                            <label for="subject">I feel that my doctor listened to me and addressed my needs.</label>
-                            <select name="feelings" id="feelings" class="custom-select" >
-                              <option value="5">I strongly agree</option> 
-                              <option value="4">I slightly agree</option>
-                              <option value="3">I feel neutral</option>
-                              <option value="2">I slightly disagree</option>
-                              <option value="1">I strongly disagree</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">Submit</button> 
-                              <!-- followiing line only display if satisfaction rating already exists -->
-                          <a> Your satisfaction rating: </a>
-                    
-                    </div>
-                    </div>
-                  </div>
-              </div>
-              <!-- example 2 -->
-              <div class="sidebar-block">
-                <div class="content">
-                    <h5 class="post-title"><a> Input name of physician </a> <span class="mai-calendar" class="justify-right"><a>      </a></span> July 12, 2018</a> </h5>
-                    <div class="meta">
-                      <div class="container">
+
+                      <?php
+
+                      $user_ID = $_SESSION['user_ID'];
+          
+                      $query = "SELECT * FROM appointment JOIN users ON appointment.physician_ID = users.user_ID WHERE patient_ID='$user_ID' AND appt_date_time < NOW()";
+                      $physician_ID = $_SESSION['physician_ID'];
+                      $appt_date_time = $_SESSION['appt_date_time'];
+                      $satisfaction_rating = $_SESSION['satisfaction_rating'];
+                      $physician_notes = $_SESSION['physician_notes'];
+                      $first_name = $_SESSION['first_name'];
+                      $last_name = $_SESSION['last_name'];
+
+
+                      if ($result = mysqli_query($conn, $query) ) {
+                        while ($row = mysqli_fetch_array($result)) {
+
+                          $date = $row["appt_date_time"];
+                          $firstname = $row["first_name"];
+                          $lastname = $row["last_name"];
+                          $notes = $row["physician_notes"];
+                          $rating = $row["satisfaction_rating"];
+
+
+
+                          echo 
+                          '<div class="sidebar-block"> 
+
+                            <h5> <a> Your physician: Dr. '.$firstname.' '.$lastname.' </h5>
+                            Date of appointment: '.$date.' </a> 
+
+                            <p> Notes from your doctor: '.$notes.' </p>
+
+                            <p> Your satisfaction rating: '.$rating.' </p>
+
+                           </div>';
+
+
+
+                            
+                        }
+
+                         // <label for="subject">I feel that my doctor listened to me and addressed my needs.</label>
+                            // <select name="feelings" id="feelings" class="custom-select" >
+                            //   <option value="5">I strongly agree</option> 
+                            //   <option value="4">I slightly agree</option>
+                            //   <option value="3">I feel neutral</option>
+                            //   <option value="2">I slightly disagree</option>
+                            //   <option value="1">I strongly disagree</option>
+                            // </select>
+                            // <button type="submit" class="btn btn-primary">Submit</button> 
+
+                        // <!-- satisfaction rating -->
+                        // <!-- if has not already posted their satisfaction rating, display this -->
+                        // <!-- if they already did their satisfaction rating, display that -->
+
+                        mysqli_free_result($result);
+                      }
+                      ?>
 
                         
-                      <!-- get dates from the database -->
-                      <p> You completed a daily check in.</p>
-                      <p> the doctor's notes</p>
-                   
-                      <!-- satisfaction rating -->
-                      <!-- if has not already posted their satisfaction rating, display this -->
-                      <!-- if they already did their satisfaction rating, display that -->
+                      
                           
-                            <label for="subject">I feel that my doctor listened to me and addressed my needs.</label>
-                            <select name="feelings" id="feelings" class="custom-select" >
-                              <option value="5">I strongly agree</option> 
-                              <option value="4">I slightly agree</option>
-                              <option value="3">I feel neutral</option>
-                              <option value="2">I slightly disagree</option>
-                              <option value="1">I strongly disagree</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">Submit</button> 
-                            <!-- followiing line only display if satisfaction rating already exists -->
-                          <a> Your satisfaction rating: </a>
+                            
+                              <!-- followiing line only display if satisfaction rating already exists -->
+                          
                     
-                    </div>
-                    </div>
-                  </div>
-              </div>
+                    
+                    
+                  <!-- </div> -->
+              <!-- </div> -->
+              <!-- example 2 -->
+              
           
             </div>
            
@@ -168,56 +184,111 @@ if (isset($_SESSION['user_ID'])) {
                 <!-- for loop
                   if person has medical conditions, put them here 
                     otherwise, say no medical conditions -->
-                <li><a href="#">You </a></li>
-                <li><a href="#">Are </a></li>
-                <li><a href="#">Busted </a></li>
+                   <?php
+
+                    $user_ID = $_SESSION['user_ID'];
+          
+                    $query = "SELECT * FROM patient_medical_condition WHERE patient_ID='$user_ID'";
+                    
+                    $medical_condition = $_SESSION['medical_condition'];
+
+                    if ($result = mysqli_query($conn, $query)) {
+                      while ($row = mysqli_fetch_array($result)) {
+
+                        $condition = $row["medical_condition"];
+                        echo '<li><a> '.$condition.' </a> <li>';
+
+                      }
+
+                      
+                      mysqli_free_result($result);
+                    }
+                    ?>
+
+
 
               </ul>
             </div>
 
             <div class="sidebar-block">
               <h3 class="sidebar-title">Upcoming Appointments</h3>
-              <div class="blog-item">
-               
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Medical Appointment</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <span class="mai-calendar"></span> July 12, 2018</a>
-                    <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
+              
 
-                  </div>
-                </div>
-              </div>
-              <div class="blog-item">
-               
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Medical Appointment</a></h5>
-                  <div class="meta">
-                    <span class="mai-calendar"></span> July 12, 2018</a>
-                    <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
-                  </div>
-                </div>
-              </div>
-              <div class="blog-item">
-               
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Medical Appointment</a></h5>
-                  <div class="meta">
-                    <span class="mai-calendar"></span> July 12, 2018</a>
-                    <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
-                  </div>
-                </div>
-              </div>
+
+                    <?php
+
+                      $user_ID = $_SESSION['user_ID'];
+          
+                      $query = "SELECT * FROM appointment JOIN users ON appointment.physician_ID = users.user_ID WHERE patient_ID='$user_ID' AND appt_date_time > NOW()"; 
+                      // AND appt_date_time > GETDATE() this breaks the page! but i only want to display when its later than the current date
+                      $physician_ID = $_SESSION['physician_ID'];
+                      $appt_date_time = $_SESSION['appt_date_time'];
+                      $satisfaction_rating = $_SESSION['satisfaction_rating'];
+                      $physician_notes = $_SESSION['physician_notes'];
+                      $first_name = $_SESSION['first_name'];
+                      $last_name = $_SESSION['last_name'];
+
+
+                      if ($result = mysqli_query($conn, $query) ) {
+                        while ($row = mysqli_fetch_array($result)) {
+
+                          $date = $row["appt_date_time"];
+                          $firstname = $row["first_name"];
+                          $lastname = $row["last_name"];
+                          $notes = $row["physician_notes"];
+
+
+
+                          echo 
+                          '<div class="blog-item"> 
+
+                            <h5> <a> With Dr. '.$firstname.' '.$lastname.' </h5>
+                            <span class="mai-calendar"></span> '.$date.' </a> 
+
+                            <button type="submit" class="btn btn-primary wow zoomIn">Cancel</button>
+
+                           </div>';
+          
+                        }
+                        mysqli_free_result($result);
+                      }
+                  ?>
+
             </div>
 
 
             <!-- if the patient has a check in assigned, display this block, otherwise do not display -->
-            <div class="sidebar-block">
-              <h3 class="sidebar-title">Your doctor assigned you a daily check in.</h3>
-              <h5 class="post-title"><a href="checkin.php">Complete Daily Check In</a></h5>
-            </div>
+            <?php
+
+                      $user_ID = $_SESSION['user_ID'];
+          
+                      $query = "SELECT * FROM assign JOIN daily_check_in ON assign.check_in_number = daily_check_in.check_in_number WHERE patient_ID='$user_ID' "; 
+                      // AND date_taken > GETDATE() this breaks the page! but i only want to display when its later than the current date
+                      $check_in_number = $_SESSION['check_in_number'];
+      
+
+
+                      if ($result = mysqli_query($conn, $query) ) {
+                          $firstname = $row["first_name"];
+                          $lastname = $row["last_name"];
+
+                          echo 
+                          '<div class="sidebar-block"> 
+
+                          <h3 class="sidebar-title"> You were assigned you a daily check in.</h3>
+                          <p> </p>
+                          <h5 class="post-title"><a href="checkin.php">Complete Daily Check In</a></h5>
+                          </div>';
+
+          
+                        mysqli_free_result($result);
+                      }
+                ?>
+            
+              
+
+
+
           </div>
         </div> 
       </div> <!-- .row -->

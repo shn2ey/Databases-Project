@@ -1,8 +1,13 @@
+
 <?php 
 
 session_start();
+require('db_conn.php');
 
 if (isset($_SESSION['user_ID'])) {
+
+                  
+                    
 
  ?>
 
@@ -56,9 +61,7 @@ if (isset($_SESSION['user_ID'])) {
             <li class="nav-item ">
               <a class="nav-link" href="checkin.php">Daily Check In</a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="insurance.php">Insurance</a>
-            </li>
+
             <li class="nav-item ">
               <a class="nav-link" href="appointments.php">Appointments</a>
             </li>
@@ -94,29 +97,82 @@ if (isset($_SESSION['user_ID'])) {
 
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Patient ID: </p> <!-- # get from database  -->
+            <p> Patient ID: <?php echo $_SESSION['user_ID']; ?></p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <p> Name: </p> <!-- # get from database  -->
+            <p> Name: <?php echo $_SESSION['first_name']; ?> <?php echo $_SESSION['last_name']; ?></p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Age: </p> <!-- # get from database  -->
+            <p> Age: 
+                    <?php
+
+                    $user_ID = $_SESSION['user_ID'];
+          
+                    $query = "SELECT * FROM patient WHERE patient_ID='$user_ID'";
+                    $patient_age = $_SESSION['patient_age'];
+
+                    if ($result = mysqli_query($conn, $query)) {
+                      while ($row = mysqli_fetch_array($result)) {
+                        echo $row["patient_age"];
+
+                      } 
+                      
+                      mysqli_free_result($result);
+                    }
+                    ?></p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Phone Number: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Email: <?php echo $_SESSION['email']; ?> <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <p> Address: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Address: <?php echo $_SESSION['address']; ?>   <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Insurance Plan: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
+            <p> Insurance Plan: 
+                  <?php
+
+                    $user_ID = $_SESSION['user_ID'];
+          
+                    $query = "SELECT * FROM patient_insurance_plan WHERE patient_ID='$user_ID'";
+                    $insurance_plan = $_SESSION['insurance_plan'];
+
+                    if ($result = mysqli_query($conn, $query)) {
+                      while ($row = mysqli_fetch_array($result)) {
+                        echo $row["insurance_plan"];
+
+                      } 
+                      
+                      mysqli_free_result($result);
+                    }
+                    ?>
+                    <button type="submit" class="btn btn-primary">Edit</button>
+
+          </p>
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <p> Medical Conditions: </p> <!-- # get from database  -->
+            <p> Medical Conditions: 
+
+                    <?php
+
+                    $user_ID = $_SESSION['user_ID'];
+          
+                    $query = "SELECT * FROM patient_medical_condition WHERE patient_ID='$user_ID'";
+                    $medical_condition = $_SESSION['medical_condition'];
+
+                    if ($result = mysqli_query($conn, $query)) {
+                      while ($row = mysqli_fetch_array($result)) {
+                        echo $row["medical_condition"];
+
+                      } 
+                      mysqli_free_result($result);
+                    }
+                    
+                    ?>
+
+
+            </p> <!-- # get from database  -->
           </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <p> Allergies: </p> <!-- # get from database  -->
-          </div>
+          
           <form action="exportToCSV.php">
           <input type="button" value="Download CSV File For My Appointments">
           </form>
@@ -162,6 +218,8 @@ if (isset($_SESSION['user_ID'])) {
   
 </body>
 </html>
+
+
 
 <?php 
 

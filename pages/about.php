@@ -63,9 +63,6 @@ if (isset($_SESSION['user_ID'])) {
               <a class="nav-link" href="checkin.php">Daily Check In</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="insurance.php">Insurance</a>
-            </li>
-            <li class="nav-item ">
               <a class="nav-link" href="appointments.php">Appointments</a>
             </li>
             <li class="nav-item">
@@ -75,11 +72,6 @@ if (isset($_SESSION['user_ID'])) {
         </div> <!-- .navbar-collapse -->
 
           <!-- else:  -->
-
-            <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="#">Login</a>
-
-            </li>
           </ul>
         </div> <!-- .navbar-collapse -->
       </div> <!-- .container -->

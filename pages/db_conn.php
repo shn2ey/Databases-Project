@@ -16,7 +16,7 @@ try
    $conn = mysqli_connect($host, $username, $password, $dbname);
    
    // dispaly a message to let us know that we are connected to the database 
-   echo "<p>You are connected to the database --- dsn=$dsn, user=$username, pwd=$password </p>";
+   // echo "<p>You are connected to the database --- dsn=$dsn, user=$username, pwd=$password </p>";
 }
 catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
 {

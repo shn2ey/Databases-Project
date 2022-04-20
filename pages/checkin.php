@@ -57,9 +57,6 @@ if (isset($_SESSION['user_ID'])) {
               <a class="nav-link" href="checkin.php">Daily Check In</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="insurance.php">Insurance</a>
-            </li>
-            <li class="nav-item ">
               <a class="nav-link" href="appointments.php">Appointments</a>
             </li>
             <li class="nav-item">
@@ -93,32 +90,44 @@ if (isset($_SESSION['user_ID'])) {
       <form class="contact-form mt-5">
         <h5> Please submit once daily. </h5>
         <div class="row mb-3">
-          <label> </label>
-          <div class="col-sm-6 py-2 wow fadeInLeft">
+
+          <form action='checkin.php' method='post'>
+
+          <div class="col-sm-6 py-2">
             <!-- physical wellness rating -->
+            
             <label for="feeling good">Today, I feel good physically.</label>
-            <select name="feelings" id="feelings" class="custom-select">
-              <option value="5">I strongly agree</option> 
-              <option value="4">I slightly agree</option>
-              <option value="3">I feel neutral</option>
-              <option value="2">I slightly disagree</option>
-              <option value="1">I strongly disagree</option>
+            <select name="physical_wellness_rating" id="physical_wellness_rating" class="custom-select">
+              <option value="5">I strongly agree - 5</option> 
+              <option value="4">I slightly agree - 4</option>
+              <option value="3">I feel neutral - 3</option>
+              <option value="2">I slightly disagree - 2</option>
+              <option value="1">I strongly disagree - 1</option>
             </select>
+
           </div>
+            
+          
           <!-- mental wellness rating -->
-          <div class="col-sm-6 py-2 wow fadeInRight">
+          <div class="col-sm-6 py-2">
             <label for="emailAddress">Today, I feel good mentally.</label>
-            <select name="feelings" id="feelings" class="custom-select">
-              <option value="5">I strongly agree</option> 
-              <option value="4">I slightly agree</option>
-              <option value="3">I feel neutral</option>
-              <option value="2">I slightly disagree</option>
-              <option value="1">I strongly disagree</option>
+            <select name="mental_wellness_rating" id="mental_wellness_rating" class="custom-select">
+              <option value="5">I strongly agree - 5</option> 
+              <option value="4">I slightly agree - 4</option>
+              <option value="3">I feel neutral - 3</option>
+              <option value="2">I slightly disagree - 2</option>
+              <option value="1">I strongly disagree - 1</option>
+              <?php
+                $sql = "INSERT INTO daily_check_in VALUES ('$user_ID, $mental_wellness_rating', '$physical_wellness_rating')";
+              ?>
+
             </select>
           </div>
+                  </form>
+
+        
           
         </div>
-        <button type="submit" class="btn btn-primary wow zoomIn">Submit</button>
         <!-- add a message here:
         if clicked on submit button, send back to database
         set the ratings to the appointment table

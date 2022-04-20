@@ -1,13 +1,8 @@
 <?php 
 
-require('db_conn.php');
-include('db_conn.php');
-
 session_start();
 
 if (isset($_SESSION['user_ID'])) {
-  var_dump($_GET['id']);
-
 
  ?>
 
@@ -117,15 +112,6 @@ if (isset($_SESSION['user_ID'])) {
           <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
             <p> Allergies: <button type="submit" class="btn btn-primary">Edit</button> </p> <!-- # get from database  -->
           </div>
-
-          <?php  
-
-          '<div>
-            $patient_ID = $_COOKIE['patient_ID'];
-            echo   '.$patient_ID.' ;
-            </div>'
-
-          ?>
           
 
         </div>

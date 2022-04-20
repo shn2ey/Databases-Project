@@ -1,10 +1,18 @@
+
 <?php 
 
 session_start();
+require('db_conn.php');
+
 
 if (isset($_SESSION['user_ID'])) {
 
+                  
+                    
+
  ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,13 +77,57 @@ if (isset($_SESSION['user_ID'])) {
   <div class="page-section pt-5">
     <div class="container">
           <h3 class="sidebar-title">Search</h3>
-              <form action="#" class="search-form">
+              <form action="" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search your appointments by date">
-                  <button type="submit" class="btn"><span class="icon mai-search"></span></button>
+                  <form action ="" method="POST">
+                  <input type="text" class="form-control" name="appt_date_time" placeholder="Search your appointments by date"/> <br/>
+
+                  
+                  <input type="submit" name="search" class="btn btn-primary"> </button>
                   <!-- make it display the appointments of that physician on that date, otherwise no appointments-->
                 </div>
               </form>
+
+
+              <?php
+                  $user_ID = $_SESSION['user_ID'];
+
+                  if(isset($_POST['search'])){
+                    $date = $_POST['date'];
+                    $query = "SELECT * FROM appointment WHERE physician_ID='$user_ID' AND appt_date_time='$date'";
+                    $result = mysqli_query($conn, $query);
+                    while($row = mysqli_fetch_array($result)){
+                      ?>
+                          $id = $row["patient_ID"]; 
+                          $firstname = $row["first_name"];
+                          $lastname = $row["last_name"];
+                          $notes = $row["physician_notes"];
+                          $age = $row["patient_age"];
+
+
+                          $_COOKIE['patient_ID'] = $patient_ID;
+
+                          echo 
+                          '<div class="blog-item"> 
+                          <div class="content">
+
+                          <h5 class="post-title"><a href="DocViewMedicalPassport.php?patient_ID='.$id.'">'.$firstname.' '.$lastname.'</a></h5>
+
+
+
+
+
+
+
+                            <p>  '.$age.' year old</p>
+                      <?php
+                    }
+
+                  }
+                  
+
+                  ?>
+
               
             <select name="feelings" id="feelings" class="custom-select">
               <!-- for loop of patients that have the same physician -->
@@ -85,43 +137,70 @@ if (isset($_SESSION['user_ID'])) {
       <div class="sidebar-block">
              
               <h3 class="sidebar-title">My Patients</h3>
-              <div class="blog-item">  
-               <!-- for loop here to display the patients assigned to each doctor -->
-                <div class="content">
-                  <h5 class="post-title"><a href="DocViewMedicalPassport.php">Place holder for patient (will get from the database)</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Age</a>
-                  </div>
-                </div>
 
-              </div>
 
-              <div class="blog-item">  
-               <!-- for loop here to display the patients assigned to each doctor -->
-                <div class="content">
-                  <h5 class="post-title"><a href="DocViewMedicalPassport.php">Place holder for patient (will get from the database)</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Age</a>
-                  </div>
-                </div>
-              </div>
-               
-                <div class="blog-item">  
-               <!-- for loop here to display the patients assigned to each doctor -->
-                <div class="content">
-                  <h5 class="post-title"><a href="DocViewMedicalPassport.php">Place holder for patient (will get from the database)</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Age</a>
-                  </div>
-                </div>
-              </div>
 
+              <?php
+
+                      $user_ID = $_SESSION['user_ID'];
+          
+                      $query = "SELECT * FROM appointment JOIN users ON appointment.patient_ID = users.user_ID JOIN patient ON appointment.patient_ID = patient.patient_ID WHERE physician_ID='$user_ID'";
+                      $patient_ID = $_SESSION['patient_ID'];
+                      $appt_date_time = $_SESSION['appt_date_time'];
+                      $physician_notes = $_SESSION['physician_notes'];
+                      $first_name = $_SESSION['first_name'];
+                      $last_name = $_SESSION['last_name'];
+                      $last_name = $_SESSION['last_name'];
+
+
+                      if ($result = mysqli_query($conn, $query) ) {
+                        while ($row = mysqli_fetch_array($result)) {
+
+                          // $date = $row["appt_date_time"];
+                          $id = $row["patient_ID"]; 
+                          $firstname = $row["first_name"];
+                          $lastname = $row["last_name"];
+                          $notes = $row["physician_notes"];
+                          $age = $row["patient_age"];
+
+
+                          $_COOKIE['patient_ID'] = $patient_ID;
+
+                          echo 
+                          '<div class="blog-item"> 
+                          <div class="content">
+
+                          <h5 class="post-title"><a href="DocViewMedicalPassport.php?patient_ID='.$id.'">'.$firstname.' '.$lastname.'</a></h5>
+
+
+
+
+
+
+
+                            <p>  '.$age.' year old</p>
+
+
+
+
+                            </div>
+                           </div>';
+
+
+                            
+                        }
+
+
+                        mysqli_free_result($result);
+                      }
+                      ?>            
+                  <div class="meta">
+                  
+        
+                  </div>
+
+
+              
               </div>
             </div>
 

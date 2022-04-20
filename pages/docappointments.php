@@ -1,8 +1,14 @@
+
 <?php 
 
 session_start();
+require('db_conn.php');
+
 
 if (isset($_SESSION['user_ID'])) {
+
+                  
+                    
 
  ?>
 
@@ -48,7 +54,7 @@ if (isset($_SESSION['user_ID'])) {
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="mypatient.php">View My Patients</a>
+              <a class="nav-link" href="mypatients.php">View My Patients</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="checkin.php">Manage Appointments</a>
@@ -71,51 +77,54 @@ if (isset($_SESSION['user_ID'])) {
 
       <div class="sidebar-block">
               <h3 class="sidebar-title">Upcoming Appointments</h3>
-              <div class="blog-item">
-               
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Name of Patient</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Date of Appointment</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> General Check Up</a>
 
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary wow zoomIn">Cancel Appointment</button>
-              </div>
-              <div class="blog-item">
-               
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Name of Patient</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Date of Appointment</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> General Check Up</a>
 
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary wow zoomIn">Cancel Appointment</button>
 
-              </div>
-              <div class="blog-item">
-               
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Name of Patient</a></h5>
-                  <div class="meta">
-                    <!-- get dates from the database,
-                    if the date of the appintment is after today, display it here -->
-                    <a href="#"><span class="mai-calendar"></span> Date of Appointment</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> General Check Up</a>
 
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary wow zoomIn">Cancel Appointment</button>
+              <?php
 
-              </div>
-            </div>
+                      $user_ID = $_SESSION['user_ID'];
+          
+                      $query = "SELECT * FROM appointment JOIN users ON appointment.patient_ID= users.user_ID WHERE physician_ID='$user_ID' AND appt_date_time > NOW()"; 
+                      // AND appt_date_time > GETDATE() this breaks the page! but i only want to display when its later than the current date
+                      // $patient_ID = $_SESSION['physician_ID'];
+                      $appt_date_time = $_SESSION['appt_date_time'];
+                      $satisfaction_rating = $_SESSION['satisfaction_rating'];
+                      $physician_notes = $_SESSION['physician_notes'];
+                      $first_name = $_SESSION['first_name'];
+                      $last_name = $_SESSION['last_name'];
+
+
+                      if ($result = mysqli_query($conn, $query) ) {
+                        while ($row = mysqli_fetch_array($result)) {
+
+                          $date = $row["appt_date_time"];
+                          $firstname = $row["first_name"];
+                          $lastname = $row["last_name"];
+                          $notes = $row["physician_notes"];
+
+
+
+                          echo 
+                          '<div class="blog-item"> 
+                              <div class="content">
+                              <h5 class="post-title"><a>'.$firstname.' '.$lastname.'</a></h5>
+                              <div class="meta">
+                              
+                            <a> <span class="mai-calendar"></span> '.$date.' </a> 
+                            <a><span class="mai-chatbubbles"></span> General Check Up</a>
+
+                            <button type="submit" class="btn btn-primary wow zoomIn">Cancel Appointment</button>
+
+
+                           </div>
+                           </div>
+                           </div>';
+          
+                        }
+                        mysqli_free_result($result);
+                      }
+                  ?>
 
       </div> <!-- .row -->
     </div> <!-- .container -->
