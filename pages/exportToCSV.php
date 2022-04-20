@@ -1,7 +1,5 @@
 <?php 
 
-echo “hi!”
-
 session_start();
 
 include ('dbConfig.php'); 
