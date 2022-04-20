@@ -117,10 +117,30 @@ if (isset($_SESSION['user_ID'])) {
           <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
             <p> Allergies: </p> <!-- # get from database  -->
           </div>
-          <form action="exportToCSV.php">
+         <div class="col-md-12 head">
+           <div class="float-right">
+             <a href="exportToCSV.php" class="btn btn-success"><i class="dwn"></i> Export</a>
+           </div>
+         </div>
+         <?php 
+            $result = $db->query("SELECT * FROM appointment NATURAL JOIN physician INNER JOIN users ON physician.physician_ID = users.user_ID WHERE patient_ID = $_SESSION['user_ID'] ORDER BY patient_ID ASC"); 
+            if($result->num_rows > 0){ 
+             while($row = $result->fetch_assoc()){ 
+            ?>
+             <tr>
+               <td><?php echo $row['patient_ID']; ?></td>
+               <td><?php echo $row['first_name'].' '.$row['last_name']; ?></td>
+               <td><?php echo $row['specialty']; ?></td>
+               <td><?php echo $row['location']; ?></td>
+               <td><?php echo $row['email']; ?></td>
+            </tr>
+    <?php } }else{ ?>
+        <tr><td colspan="4">No upcoming appointments.</td></tr>
+    <?php } ?>
+          <!-- <form action="exportToCSV.php">
           <input type="button" value="Download CSV File For My Appointments">
           </form>
-          <!-- <button type="submit" class="btn btn-primary wow zoomIn">Export to CSV</button> -->
+          <button type="submit" class="btn btn-primary wow zoomIn">Export to CSV</button> -->
           
         </div>
 
