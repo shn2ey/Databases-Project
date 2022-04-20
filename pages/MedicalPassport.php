@@ -174,7 +174,9 @@ if (isset($_SESSION['user_ID'])) {
           </div>
           
           <?php 
-            $result = $db->query("SELECT * FROM appointment NATURAL JOIN physician INNER JOIN users ON physician.physician_ID = users.user_ID WHERE patient_ID = $_SESSION['user_ID'] ORDER BY patient_ID ASC"); 
+            $user_ID = $_SESSION['user_ID'];
+  
+            $result = $db->query("SELECT * FROM appointment NATURAL JOIN physician INNER JOIN users ON physician.physician_ID = users.user_ID WHERE patient_ID = '$user_ID' ORDER BY patient_ID ASC"); 
             if($result->num_rows > 0){ 
                 while($row = $result->fetch_assoc()){ 
             ?>
