@@ -1,5 +1,7 @@
 <?php 
+
 require('db_conn.php');
+include('db_conn.php');
 
 session_start();
 
